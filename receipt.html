@@ -87,7 +87,8 @@
     <div class="footer">Payment received in full. Thank you for your business.</div>
     <div class="footer">elitesdebateinfo@gmail.com &nbsp;|&nbsp; +254741402715</div>
   </div>
-<script>const params = new URLSearchParams(window.location.search);
+<script>
+const params = new URLSearchParams(window.location.search);
 document.getElementById('companyName').textContent = params.get('company') || 'Company Name';
 document.getElementById('receiptNo').textContent = params.get('receipt') || '-';
 document.getElementById('receiptDate').textContent = params.get('date') || '-';
@@ -115,6 +116,7 @@ if (itemsParam) {
   });
   html += '</table>';
   document.getElementById('itemsSection').innerHTML = html;
-  </script>
+}
+</script>
 </body>
 </html>
