@@ -54,6 +54,21 @@
     color: #2E7D32;
     font-weight: bold;
   }
+    .print-btn {
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: #2E7D32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  @media print {
+    .print-btn { display: none; }
+    body { background: white; padding: 0; }
+    .receipt-card { box-shadow: none; }
+  }
   .footer {
     margin-top: 25px;
     font-size: 12px;
@@ -86,6 +101,7 @@
 
     <div class="footer">Payment received in full. Thank you for your business.</div>
     <div class="footer">elitesdebateinfo@gmail.com &nbsp;|&nbsp; +254741402715</div>
+    <button class="print-btn" onclick="window.print()">Print This Receipt</button>
   </div>
 <script>
 const params = new URLSearchParams(window.location.search);
