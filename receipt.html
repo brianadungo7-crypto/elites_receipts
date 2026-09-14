@@ -81,24 +81,40 @@
       <span class="value" id="invoiceNo">-</span>
     </div>
 
+    <div id="itemsSection" style="text-align:left; margin-top:15px;"></div>
     <div class="amount" id="amount">-</div>
 
     <div class="footer">Payment received in full. Thank you for your business.</div>
+    <div class="footer">elitesdebateinfo@gmail.com &nbsp;|&nbsp; +254741402715</div>
   </div>
+<script>const params = new URLSearchParams(window.location.search);
+document.getElementById('companyName').textContent = params.get('company') || 'Company Name';
+document.getElementById('receiptNo').textContent = params.get('receipt') || '-';
+document.getElementById('receiptDate').textContent = params.get('date') || '-';
+document.getElementById('invoiceNo').textContent = params.get('invoice') || '-';
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  document.getElementById('companyName').textContent = params.get('company') || 'Company Name';
-  document.getElementById('receiptNo').textContent = params.get('receipt') || '-';
-  document.getElementById('receiptDate').textContent = params.get('date') || '-';
-  document.getElementById('invoiceNo').textContent = params.get('invoice') || '-';
-  const amt = params.get('amount');
+const amt = params.get('amount');
 if (amt) {
   const formatted = parseFloat(amt).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
   document.getElementById('amount').textContent = 'KES ' + formatted;
 } else {
   document.getElementById('amount').textContent = '-';
 }
-</script>
+
+const itemsParam = params.get('items');
+if (itemsParam) {
+  const items = itemsParam.split(';').filter(x => x.trim() !== '');
+  let html = '<table style="width:100%; border-collapse:collapse; font-size:13px;">';
+  html += '<tr style="border-bottom:1px solid #ddd; color:#888;"><td>Item</td><td style="text-align:right;">Qty</td><td style="text-align:right;">Total</td></tr>';
+  items.forEach(function(item) {
+    const parts = item.split('|');
+    const name = parts[0] || '';
+    const qty = parts[2] || '';
+    const total = parts[3] || '';
+    html += '<tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:4px 0;">' + name + '</td><td style="text-align:right;">' + qty + '</td><td style="text-align:right;">' + total + '</td></tr>';
+  });
+  html += '</table>';
+  document.getElementById('itemsSection').innerHTML = html;
+  </script>
 </body>
 </html>
