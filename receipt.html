@@ -93,7 +93,6 @@
   document.getElementById('receiptDate').textContent = params.get('date') || '-';
   document.getElementById('invoiceNo').textContent = params.get('invoice') || '-';
   const amt = params.get('amount');
-  const amt = params.get('amount');
 if (amt) {
   const formatted = parseFloat(amt).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
   document.getElementById('amount').textContent = 'KES ' + formatted;
